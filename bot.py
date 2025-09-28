@@ -12,10 +12,10 @@ API_TOKEN = "7001557432:AAEJ9-r4cGwTiLtrScvAHfW1rN77OK6lUp0"
 # telegram link https://t.me/Wirexltd_Bot
 # telegram link for auto statr bot with button https://t.me/Wirexltd_Bot?start=wirex
 #get admin chat id with @userinfobot
-ADMIN_TELEGRAM_ID = 6772237358   # <-- replace with your Telegram user ID Testing
+#ADMIN_TELEGRAM_ID = 6772237358   # <-- replace with your Telegram user ID Testing
 
 
-#ADMIN_TELEGRAM_ID = 6179401337
+ADMIN_TELEGRAM_ID = 6179401337
 
 # --- User state tracking ---
 user_states = {}
@@ -132,4 +132,5 @@ if __name__ == "__main__":
         print("🔄 Restarting in 10 seconds...")
         import time
         time.sleep(10)
+
         bot.infinity_polling(timeout=60, long_polling_timeout=60)
