@@ -4,6 +4,23 @@ import random
 import telebot
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
+
+
+# Flask app
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "🤖 Bot is alive!"
+
+def run_flask():
+    port = int(os.environ.get("PORT", 8000))
+    app.run(host='0.0.0.0', port=port, debug=False, use_reloader=False)
+
+# Start Flask in background
+flask_thread = threading.Thread(target=run_flask, daemon=True)
+flask_thread.start()
+
 # --- Bot & Admin Config ---
 API_TOKEN = "7001557432:AAEJ9-r4cGwTiLtrScvAHfW1rN77OK6lUp0"
 
@@ -119,18 +136,5 @@ def handle_code(message):
 
 # --- Start the bot ---
 if __name__ == "__main__":
-    print("🤖 Starting Wirex Bot with pyTelegramBotAPI...")
-    
-    # Remove any existing webhook to avoid conflicts
-    bot.remove_webhook()
-    
-    # Start polling
-    try:
-        bot.infinity_polling(timeout=60, long_polling_timeout=60)
-    except Exception as e:
-        print(f"❌ Error starting bot: {e}")
-        print("🔄 Restarting in 10 seconds...")
-        import time
-        time.sleep(10)
-
-        bot.infinity_polling(timeout=60, long_polling_timeout=60)
+    print("Bot is starting...")
+    bot.infinity_polling()
